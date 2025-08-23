@@ -114,9 +114,11 @@ const Projects: React.FC = () => {
         
               {/* Tech stack icons */}
               <div className="flex gap-3 text-2xl text-yellow-400 mb-4">
-                {project.techStack.map((icon, idx) => (
-                  <span key={`tech-${project.title}-${idx}`}>{icon}</span>  {/* ✅ fixed */}
-                ))}
+                {/* ✅ Tech stack icons */}
+                  {project.techStack.map((icon, idx) => (
+                    <span key={`tech-${project.title}-${idx}`}>{icon}</span>
+                  ))}
+
               </div>
         
               {/* Links */}
@@ -149,3 +151,4 @@ const Projects: React.FC = () => {
 
 
 export default Projects;
+
