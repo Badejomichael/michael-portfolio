@@ -88,12 +88,13 @@ const Projects: React.FC = () => {
 
       {/* Project Grid */}
       <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+       {/* Outer loop (projects) */}
         {projects.map((project, index) => (
           <motion.div
-            key={index}
+            key={`project-${project.title}-${index}`}   // ✅ unique key
             className="bg-neutral-900 rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden flex flex-col"
             variants={fadeUp}
-            custom={0.2 + index * 0.15} // stagger delay
+            custom={0.2 + index * 0.15}
           >
             {/* Image */}
             <Image
@@ -103,24 +104,21 @@ const Projects: React.FC = () => {
               width={600}
               height={300}
             />
-
+        
             {/* Content */}
             <div className="p-6 flex flex-col flex-grow justify-between">
               <h3 className="text-xl font-semibold mb-2 text-yellow-400">
                 {project.title}
               </h3>
-              <p className="text-gray-400 mb-4">
-                {project.description}
-              </p>
-
+              <p className="text-gray-400 mb-4">{project.description}</p>
+        
               {/* Tech stack icons */}
               <div className="flex gap-3 text-2xl text-yellow-400 mb-4">
                 {project.techStack.map((icon, idx) => (
-                  <span key={`${project.title}-icon-${idx}`}>{icon}</span>
+                  <span key={`tech-${project.title}-${idx}`}>{icon}</span>  {/* ✅ fixed */}
                 ))}
-
               </div>
-
+        
               {/* Links */}
               <div className="mt-2 flex justify-between items-center">
                 <a
@@ -143,9 +141,11 @@ const Projects: React.FC = () => {
             </div>
           </motion.div>
         ))}
+
       </div>
     </motion.section>
   );
 };
+
 
 export default Projects;
